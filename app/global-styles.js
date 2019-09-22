@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
+  
+  .react-multiple-carousel__arrow{
+    outline: none !important; 
+  }
 `;
 
 export default GlobalStyle;

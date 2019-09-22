@@ -34,8 +34,8 @@ function homePageReducer(state = initialState, action) {
       return state
         .set('loading', false)
         .set('allMovies', action.allMovies)
-        .set('familyShows', action.popularTvShows)
-        .set('documentaryMovies', action.popularTvShows)
+        .set('familyShows', action.familyShows)
+        .set('documentaryMovies', action.documentaryMovies)
         .set('popularTvShows', action.popularTvShows)
         .set('popularMovies', action.popularMovies);
     case LOAD_MOVIES_ERROR:

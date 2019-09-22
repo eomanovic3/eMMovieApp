@@ -34,28 +34,22 @@ export function* getMovies() {
       ),
       call(
         request,
-        'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f',
+        'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f&with_genres=10751',
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          },
-          params: {
-            with_genres: 10751,
-          },
+          }
         },
       ),
       call(
         request,
-        'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f',
+        'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f&with_genres=99',
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          },
-          params: {
-            with_genres: 99,
-          },
+          }
         },
       ),
       call(
@@ -69,6 +63,7 @@ export function* getMovies() {
         },
       ),
     ]);
+
 
     yield put(
       moviesLoaded(

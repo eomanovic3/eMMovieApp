@@ -16,6 +16,7 @@ import history from 'utils/history';
 import HomePage from 'containers/HomePage/Loadable';
 import DetailPage from 'containers/DetailPage/Loadable';
 import VideoPlayer from 'containers/VideoPlayer/Loadable';
+import SearchPage from 'containers/SearchPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
@@ -38,6 +39,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} history={history} />
         <Route path="/features" component={HomePage} history={history} />
+        <Route path="/search" component={SearchPage} history={history} />
         <Route
           path="/detailPage/:videoId"
           component={DetailPage}

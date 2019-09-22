@@ -29,7 +29,7 @@ class VideoList extends React.PureComponent {
       );
       return <div className="ui relaxed divided list">{renderendList}</div>;
     }
-    return <div className="ui relaxed divided list" />;
+    return null;
   }
 }
 
