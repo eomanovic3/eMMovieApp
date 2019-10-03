@@ -59,7 +59,7 @@ export function* getMovieWithId(data) {
                 },
             );
         }
-        const movieLinkKey = movieLink ? movieLink.results[0].key : "";
+        const movieLinkKey = movieLink.results && movieLink.results.length > 0 ? movieLink.results[0].key : "";
         yield put(movieLoaded(movieOrTVshow, `https://www.youtube.com/watch?v=${movieLinkKey}`));
     } catch (err) {
         yield put(movieLoadingError(err));
