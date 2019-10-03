@@ -16,8 +16,8 @@ import HomePage from 'containers/HomePage/Loadable';
 import DetailPage from 'containers/DetailPage/Loadable';
 import VideoPlayer from 'containers/VideoPlayer/Loadable';
 import SearchPage from 'containers/SearchPage/Loadable';
-import GlobalStyle from "../../../internals/templates/global-styles";
 import {Route, Switch} from "react-router-dom";
+import GlobalStyle from "../../global-styles";
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -40,7 +40,7 @@ export default function App() {
         <Route path="/features" component={HomePage} history={history} />
         <Route path="/search" component={SearchPage} history={history} />
         <Route
-          path="/detailPage/:videoId"
+          path="/detailPage/:movieType/:videoId"
           component={DetailPage}
           history={history}
         />

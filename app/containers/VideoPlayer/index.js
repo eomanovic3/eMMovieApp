@@ -23,6 +23,7 @@ import {
     makeSelectMovie,
     makeSelectMovieLink,
 } from './selectors';
+import {Link} from "react-router-dom";
 
 class VideoPlayer extends React.PureComponent {
     constructor() {
@@ -51,14 +52,13 @@ class VideoPlayer extends React.PureComponent {
     initPlayer() {
         // Create a Player instance.
         const video = document.getElementById('video');
+        video.setAttribute('crossorigin', 'anonymous');
+
         const player = new shaka.Player(video);
         player.resolution = '1440X444';
         player.bandwidth = '10285391';
         player.codecs = 'CODECS=avc1.4d4033';
         window.player = player;
-        const track = player.getTextTracks()[0];
-        const activeCue = player.getCueById;
-        console.log(player.cuechange);
 
         // Listen for error events.
         player.addEventListener('error', this.onErrorEvent);
@@ -91,7 +91,8 @@ class VideoPlayer extends React.PureComponent {
     render() {
         return (
             <div>
-                <h2>Player</h2>
+                <div className="p-2"><Link className="text-right float-left mr-3 mt-3" style={{fontSize: '20px'}} to="/"><i
+                    className="fa fa-arrow-left" aria-hidden="true"/> Back to dashboard</Link></div>
                 {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                 <video
                     id="video"

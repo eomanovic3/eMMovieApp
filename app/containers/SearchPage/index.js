@@ -44,6 +44,7 @@ const responsive = {
         items: 1,
     },
 };
+
 const PaddingDiv = styled.div`
   padding: 0 23px !important;
 `;
@@ -75,13 +76,13 @@ class SearchPage extends React.PureComponent {
     }
 
     render() {
-        const {term, onChangeTerm, movies} = this.props;
+        const {term, onChangeTerm} = this.props;
         return (
             <div className="d-flex flex-column">
                 <div className="p-2"><Link className="text-right float-left mr-3" style={{fontSize: '20px'}} to="/"><i
                     className="fa fa-arrow-left" aria-hidden="true"/> Back to dashboard</Link></div>
                 <div className="d-flex p-5 flex-column justify-content-center">
-                    <div className="d-flex border-info border w-50 p-2 m-auto">
+                    <div className="d-flex border w-50 p-2 m-auto">
                         <input
                             placeholder="Type movie name"
                             id="term"

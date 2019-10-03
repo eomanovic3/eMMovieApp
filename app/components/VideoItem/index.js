@@ -5,8 +5,6 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import './VideoItem.css';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -16,33 +14,40 @@ import { Link } from 'react-router-dom';
 const TitleDiv = styled.div`
   width: 220px !important;
   text-overflow: ellipsis;
-
   white-space: nowrap;
   overflow: hidden;
 `;
+
 const YearDiv = styled.div`
   width: 220px !important;
   float: left;
   color: #9f9f9f;
 `;
 
+const MovieImage = styled.img`
+  width: ${props => (!props.noMovieImageAvailable ? '300px !important' : '400px !important')};
+  margin: auto;
+  display: block;
+  float: right;
+  box-shadow: 5px 5px 5px grey;
+`;
+
 class VideoItem extends React.PureComponent {
   render() {
     let video = this.props.video;
-    const imageUrl = video && video.poster_path
-      ? `https://image.tmdb.org/t/p/w500${video.poster_path}`
-      : nomovie;
-    if(video && (video.first_air_date||video.release_date) && (video.original_title || video.original_name)) {
+    const imageUrl = video && video.poster_path ? `https://image.tmdb.org/t/p/w500${video.poster_path}` : nomovie;
+    const noMovieImageAvailable = video && video.poster_path;
+    if(video && (video.first_air_date||video.release_date) && (video.original_title || video.original_name || video.name)) {
       return (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <Link
-              to={`/detailPage/${video.id}`}
+              to={`/detailPage/${video.first_air_date ? "tv" : "movie"}/${video.id}`}
               className="video-item item shadow-lg d-flex flex-column"
           >
-            <img
+            <MovieImage
                 className="ui image"
                 alt={video.original_title}
                 src={imageUrl}
+                noMovieImageAvailable={noMovieImageAvailable}
             />
             <TitleDiv>{video.original_title ? video.original_title : (
                 video.original_name ? video.original_name : null)}</TitleDiv>

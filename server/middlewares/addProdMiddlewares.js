@@ -11,8 +11,18 @@ module.exports = function addProdMiddlewares(app, options) {
   // smaller (applies also to assets). You can read more about that technique
   // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
-  app.use(cors());
-  app.use(publicPath, express.static(outputPath));
+  const whitelist = ['http://localhost:3000', 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'];
+  const corsOptions = {
+    credentials: true, // This is important.
+    origin: (origin, callback) => {
+      if(whitelist.includes(origin))
+        return callback(null, true)
+
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+
+  app.use(cors(corsOptions));  app.use(publicPath, express.static(outputPath));
 
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(outputPath, 'index.html')),

@@ -31,8 +31,17 @@ const GlobalStyle = createGlobalStyle`
   .react-multiple-carousel__arrow{
     outline: none !important; 
   }
-  ::cue {
-  font-size: 12px;
+
+  .play-button{
+    border: 2px solid darkred !important;
+    background-color: white !important;
+    color: darkred !important;
+  }
+  
+  a{
+    background-color: transparent !important;
+    color: darkred !important;
+  }
 }
 `;
 
