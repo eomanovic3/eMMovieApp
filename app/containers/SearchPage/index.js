@@ -49,6 +49,11 @@ const PaddingDiv = styled.div`
 `;
 
 class SearchPage extends React.PureComponent {
+    componentDidMount() {
+        document.getElementById("term").value="";
+        this.props.onChangeTerm({ target : { value: ""}});
+    }
+
     returnCarouselData(videos) {
         let moviesDiv = null;
         if (videos && videos.results) {
@@ -71,7 +76,6 @@ class SearchPage extends React.PureComponent {
 
     render() {
         const {term, onChangeTerm, movies} = this.props;
-        console.log(this.props);
         return (
             <div className="d-flex flex-column">
                 <div className="p-2"><Link className="text-right float-left mr-3" style={{fontSize: '20px'}} to="/"><i

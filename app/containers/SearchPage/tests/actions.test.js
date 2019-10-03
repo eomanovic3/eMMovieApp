@@ -1,13 +1,13 @@
-import { defaultAction } from "../actions";
-import { DEFAULT_ACTION } from "../constants";
+import { loadSearchMovies } from "../actions";
+import {LOAD_SEARCH_MOVIES} from "../constants";
 
 describe("SearchPage actions", () => {
-  describe("Default Action", () => {
-    it("has a type of DEFAULT_ACTION", () => {
+  describe("LOAD_SEARCH_MOVIES Action", () => {
+    it("has a type of LOAD_SEARCH_MOVIES", () => {
       const expected = {
-        type: DEFAULT_ACTION
+        type: LOAD_SEARCH_MOVIES
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(loadSearchMovies()).toEqual(expected);
     });
   });
 });

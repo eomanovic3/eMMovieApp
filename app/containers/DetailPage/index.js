@@ -35,7 +35,6 @@ class DetailPage extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props);
         if (this.props.loading) {
             return <LoadingIndicator/>;
         }
@@ -123,10 +122,11 @@ class DetailPage extends React.PureComponent {
                             Play video{' '}
                         </Link>
                     </div>
-                    <div>
+                    <div className="w-75" style={{ minWidth: "200px !important" }}>
                         <img
-                            className="ui image"
+                            className="ui image rounded-5 w-100"
                             src={imageUrl}
+                            style={{ minWidth: '150px', minHeight: '150px' }}
                             alt={
                                 this.props.movie && this.props.movie.overview
                                     ? this.props.movie.overview

@@ -1,14 +1,23 @@
 // import produce from 'immer';
 import homePageReducer from '../reducer';
+import {fromJS} from "immutable";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe('homePageReducer', () => {
   let state;
   beforeEach(() => {
-    state = {
-      // default state params here
-    };
+    state = fromJS({
+      loading: false,
+      error: false,
+      popularMovies: null,
+      popularTvShows: null,
+      familyShows: null,
+      documentaryMovies: null,
+      allMovies: null,
+      selectedVideo: null,
+    });
+
   });
 
   it('returns the initial state', () => {

@@ -5,7 +5,6 @@ import { LOAD_MOVIE } from './constants';
 
 export function* getMovieWithId(id) {
   try {
-    console.log(id);
     const movie = yield call(
       request,
       `https://api.themoviedb.org/3/movie/${
@@ -32,9 +31,6 @@ export function* getMovieWithId(id) {
       },
     );
     const movieLinkKey = movieLink.results[0].key;
-
-    console.log(movie);
-    console.log(movieLink);
     yield put(
       movieLoaded(movie, `https://www.youtube.com/watch?v=${movieLinkKey}`),
     );

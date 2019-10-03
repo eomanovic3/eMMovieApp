@@ -7,18 +7,17 @@
  */
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import history from 'utils/history';
+import { Helmet } from 'react-helmet';
 
 import HomePage from 'containers/HomePage/Loadable';
 import DetailPage from 'containers/DetailPage/Loadable';
 import VideoPlayer from 'containers/VideoPlayer/Loadable';
 import SearchPage from 'containers/SearchPage/Loadable';
-
-import GlobalStyle from '../../global-styles';
+import GlobalStyle from "../../../internals/templates/global-styles";
+import {Route, Switch} from "react-router-dom";
 
 const AppWrapper = styled.div`
   margin: 0 auto;

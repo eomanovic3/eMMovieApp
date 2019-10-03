@@ -6,4 +6,6 @@
 
 import loadable from "utils/loadable";
 
-export default loadable(() => import("./index"));
+export default loadable(() => {
+    return import("./index");
+});

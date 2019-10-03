@@ -1,13 +1,13 @@
-import { defaultAction } from '../actions';
-import { DEFAULT_ACTION } from '../constants';
+import { loadMovies} from '../actions';
+import { LOAD_MOVIES} from '../constants';
 
 describe('HomePage actions', () => {
   describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+    it('has a type of LOAD_MOVIES', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: LOAD_MOVIES,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(loadMovies()).toEqual(expected);
     });
   });
 });

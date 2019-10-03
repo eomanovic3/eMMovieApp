@@ -1,14 +1,18 @@
 // import produce from 'immer';
 import searchPageReducer from "../reducer";
+import {fromJS} from "immutable";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe("searchPageReducer", () => {
   let state;
   beforeEach(() => {
-    state = {
-      // default state params here
-    };
+    state = fromJS({
+      loading: false,
+      error: false,
+      term: '',
+      movies: null,
+    });
   });
 
   it("returns the initial state", () => {

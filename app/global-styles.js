@@ -31,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
   .react-multiple-carousel__arrow{
     outline: none !important; 
   }
+  ::cue {
+  font-size: 12px;
+}
 `;
 
 export default GlobalStyle;

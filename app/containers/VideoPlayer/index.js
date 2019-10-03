@@ -6,127 +6,141 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
+import {compose} from 'redux';
 import shaka from 'shaka-player';
 import muxjs from 'mux.js';
 import reducer from './reducer';
 import saga from './saga';
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';
-import { loadMovieWithId } from './actions';
+import {loadMovieWithId} from './actions';
 import {
-  makeSelectError,
-  makeSelectId,
-  makeSelectLoading,
-  makeSelectMovie,
-  makeSelectMovieLink,
+    makeSelectError,
+    makeSelectId,
+    makeSelectLoading,
+    makeSelectMovie,
+    makeSelectMovieLink,
 } from './selectors';
 
 class VideoPlayer extends React.PureComponent {
-  constructor() {
-    super();
-    window.muxjs = muxjs;
-  }
-
-  componentDidMount() {
-    // eslint-disable-next-line react/prop-types
-    const splitUrl = this.props.location.pathname.split('/');
-    this.props.getMovieWithId(splitUrl[splitUrl.length - 1]);
-
-    // Install built-in polyfills to patch browser incompatibilities.
-    shaka.polyfill.installAll();
-
-    // Check to see if the browser supports the basic APIs Shaka needs.
-    if (shaka.Player.isBrowserSupported()) {
-      // Everything looks good!
-      this.initPlayer();
-    } else {
-      // This browser does not have the minimum set of APIs we need.
-      console.error('Browser not supported!');
+    constructor() {
+        super();
+        window.muxjs = muxjs;
     }
-  }
 
-  initPlayer() {
-    // Create a Player instance.
-    const video = document.getElementById('video');
-    const player = new shaka.Player(video);
-    player.resolution = '1440X444';
-    player.bandwidth = '10285391';
-    player.codecs = 'CODECS=avc1.4d4033';
-    window.player = player;
-    // Listen for error events.
-    player.addEventListener('error', this.onErrorEvent);
+    componentDidMount() {
+        // eslint-disable-next-line react/prop-types
+        const splitUrl = this.props.location.pathname.split('/');
+        this.props.getMovieWithId(splitUrl[splitUrl.length - 1]);
 
-    player
-      .load(
-        'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8')
-      .then(function() {
-        // This runs if the asynchronous load is successful.
-        console.log('The video has now been loaded!');
-      })
-      .catch(this.onError); // onError is executed if the asynchronous load fails.
-  }
+        // Install built-in polyfills to patch browser incompatibilities.
+        shaka.polyfill.installAll();
 
-  onErrorEvent(event) {
-    // Extract the shaka.util.Error object from the event.
-    this.onError(event.detail);
-  }
+        // Check to see if the browser supports the basic APIs Shaka needs.
+        if (shaka.Player.isBrowserSupported()) {
+            // Everything looks good!
+            this.initPlayer();
+        } else {
+            // This browser does not have the minimum set of APIs we need.
+            console.error('Browser not supported!');
+        }
+    }
 
-  onError(error) {
-    // Log the error.
-    console.error('Error code', error.code, 'object', error);
-  }
+    initPlayer() {
+        // Create a Player instance.
+        const video = document.getElementById('video');
+        const player = new shaka.Player(video);
+        player.resolution = '1440X444';
+        player.bandwidth = '10285391';
+        player.codecs = 'CODECS=avc1.4d4033';
+        window.player = player;
+        const track = player.getTextTracks()[0];
+        const activeCue = player.getCueById;
+        console.log(player.cuechange);
 
-  render() {
-    return (
-      <div>
-        <h2>Player</h2>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          id="video"
-          poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-          controls
-          data-shaka-player-container
-          data-shaka-player-cast-receiver-id="7B25EC44"
-          autoPlay
-          allow="fullScreen"
-          width="1440"
-          height="444"
-        />
-      </div>
-    );
-  }
+        // Listen for error events.
+        player.addEventListener('error', this.onErrorEvent);
+        player.configure('streaming.alwaysStreamText', true);
+        player.configure({preferredTextLanguage: 'fr'});
+        player
+            .load(
+                'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8')
+            .then(function () {
+                video.textTracks[0].mode = 'showing';
+                video.setAttribute('crossorigin', 'anonymous');
+                player.selectTextTrack(player.getTextTracks()[0]);
+                player.addTextTrack('https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_en.vtt', 'en', 'captions', 'text/vtt');
+                console.log(player.getNumberOfClosedCaptionsInChannel);
+                console.log('The video has now been loaded!');
+            })
+            .catch(this.onError); // onError is executed if the asynchronous load fails.
+    }
+
+    onErrorEvent(event) {
+        // Extract the shaka.util.Error object from the event.
+        this.onError(event.detail);
+    }
+
+    onError(error) {
+        // Log the error.
+        console.error('Error code', error.code, 'object', error);
+    }
+
+    render() {
+        return (
+            <div>
+                <h2>Player</h2>
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                <video
+                    id="video"
+                    poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+                    controls
+                    data-shaka-player-container
+                    data-shaka-player-cast-receiver-id="7B25EC44"
+                    autoPlay
+                    allow="fullScreen"
+                    width="1440"
+                    height="444"
+                    track=""
+                    crossOrigin="anonymous"
+                    allowcrosssitecredentials="true"
+                />
+
+            </div>
+        );
+    }
 }
+
 VideoPlayer.propTypes = {
-  getMovieWithId: PropTypes.func,
+    getMovieWithId: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
-  return {
-    getMovieWithId: id => dispatch(loadMovieWithId(id)),
-  };
+    return {
+        getMovieWithId: id => dispatch(loadMovieWithId(id)),
+    };
 }
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-  movie: makeSelectMovie(),
-  movieLink: makeSelectMovieLink(),
-  id: makeSelectId(),
+    loading: makeSelectLoading(),
+    error: makeSelectError(),
+    movie: makeSelectMovie(),
+    movieLink: makeSelectMovieLink(),
+    id: makeSelectId(),
 });
 
 const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'videoPlayer', reducer });
-const withSaga = injectSaga({ key: 'videoPlayer', saga });
+const withReducer = injectReducer({key: 'videoPlayer', reducer});
+const withSaga = injectSaga({key: 'videoPlayer', saga});
 
 export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
+    withReducer,
+    withSaga,
+    withConnect,
 )(VideoPlayer);

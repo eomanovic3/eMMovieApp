@@ -1,14 +1,18 @@
 // import produce from 'immer';
 import detailPageReducer from '../reducer';
+import {fromJS} from "immutable";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe('detailPageReducer', () => {
   let state;
   beforeEach(() => {
-    state = {
-      // default state params here
-    };
+    state = fromJS({
+      loading: false,
+      error: false,
+      id: null,
+      movie: null,
+    });
   });
 
   it('returns the initial state', () => {
