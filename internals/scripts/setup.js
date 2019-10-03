@@ -65,8 +65,7 @@ function checkIfRepositoryIsAClone() {
         .split(/\r?\n/)
         .map(line => line.trim())
         .filter(line => line.startsWith('origin'))
-        .filter(line => /react-boilerplate\/react-boilerplate\.git/.test(line))
-        .length;
+        .filter(line => /react-boilerplate\/react-boilerplate\.git/.test(line)).length;
 
       resolve(!!isClonedRepo);
     });
@@ -94,9 +93,7 @@ function removeGitRepository() {
  */
 function askUserIfWeShouldRemoveRepo() {
   return new Promise(resolve => {
-    process.stdout.write(
-      '\nDo you want to start with a new repository? [Y/n] ',
-    );
+    process.stdout.write('\nDo you want to start with a new repository? [Y/n] ');
     process.stdin.resume();
     process.stdin.on('data', pData => {
       const answer =
@@ -118,18 +115,14 @@ function askUserIfWeShouldRemoveRepo() {
  * @returns {Promise<boolean>}
  */
 async function cleanCurrentRepository() {
-  const hasGitRepo = await hasGitRepository().catch(reason =>
-    reportError(reason),
-  );
+  const hasGitRepo = await hasGitRepository().catch(reason => reportError(reason));
 
   // We are not under Git version control. So, do nothing
   if (hasGitRepo === false) {
     return false;
   }
 
-  const isClone = await checkIfRepositoryIsAClone().catch(reason =>
-    reportError(reason),
-  );
+  const isClone = await checkIfRepositoryIsAClone().catch(reason => reportError(reason));
 
   // Not our clone so do nothing
   if (isClone === false) {
@@ -159,11 +152,7 @@ function checkNodeVersion(minimalNodeVersion) {
       if (err) {
         reject(new Error(err));
       } else if (compareVersions(nodeVersion, minimalNodeVersion) === -1) {
-        reject(
-          new Error(
-            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`,
-          ),
-        );
+        reject(new Error(`You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`));
       }
 
       resolve('Node version OK');
@@ -183,11 +172,7 @@ function checkNpmVersion(minimalNpmVersion) {
       if (err) {
         reject(new Error(err));
       } else if (compareVersions(npmVersion, minimalNpmVersion) === -1) {
-        reject(
-          new Error(
-            `You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`,
-          ),
-        );
+        reject(new Error(`You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`));
       }
 
       resolve('NPM version OK');
@@ -201,9 +186,7 @@ function checkNpmVersion(minimalNpmVersion) {
  */
 function installPackages() {
   return new Promise((resolve, reject) => {
-    process.stdout.write(
-      '\nInstalling dependencies... (This might take a while)',
-    );
+    process.stdout.write('\nInstalling dependencies... (This might take a while)');
 
     setTimeout(() => {
       readline.cursorTo(process.stdout, 0);
@@ -305,14 +288,10 @@ function endProcess() {
   } = npmConfig;
 
   const requiredNodeVersion = node.match(/([0-9.]+)/g)[0];
-  await checkNodeVersion(requiredNodeVersion).catch(reason =>
-    reportError(reason),
-  );
+  await checkNodeVersion(requiredNodeVersion).catch(reason => reportError(reason));
 
   const requiredNpmVersion = npm.match(/([0-9.]+)/g)[0];
-  await checkNpmVersion(requiredNpmVersion).catch(reason =>
-    reportError(reason),
-  );
+  await checkNpmVersion(requiredNpmVersion).catch(reason => reportError(reason));
 
   await installPackages().catch(reason => reportError(reason));
   await deleteFileInCurrentDir('setup.js').catch(reason => reportError(reason));

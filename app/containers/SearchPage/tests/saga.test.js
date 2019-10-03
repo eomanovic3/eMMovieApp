@@ -8,8 +8,8 @@
 
 // const generator = searchPageSaga();
 
-describe("searchPageSaga Saga", () => {
-  it("Expect to have unit tests specified", () => {
+describe('searchPageSaga Saga', () => {
+  it('Expect to have unit tests specified', () => {
     expect(false).toEqual(false);
   });
 });

@@ -45,9 +45,7 @@ describe('appReducer', () => {
       draft.currentUser = username;
     });
 
-    expect(appReducer(state, reposLoaded(fixture, username))).toEqual(
-      expectedResult,
-    );
+    expect(appReducer(state, reposLoaded(fixture, username))).toEqual(expectedResult);
   });
 
   it('should handle the repoLoadingError action correctly', () => {
@@ -59,8 +57,6 @@ describe('appReducer', () => {
       draft.loading = false;
     });
 
-    expect(appReducer(state, repoLoadingError(fixture))).toEqual(
-      expectedResult,
-    );
+    expect(appReducer(state, repoLoadingError(fixture))).toEqual(expectedResult);
   });
 });

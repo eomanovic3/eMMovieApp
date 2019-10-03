@@ -15,11 +15,9 @@ import { makeSelectLocale } from './selectors';
 
 export function LanguageProvider(props) {
   return (
-    <IntlProvider
-      locale={props.locale}
-      key={props.locale}
-      messages={props.messages[props.locale]}
-    >
+    // eslint-disable-next-line react/jsx-no-undef
+    // eslint-disable-next-line react/jsx-no-undef
+    <IntlProvider locale={props.locale} key={props.locale} messages={props.messages[props.locale]}>
       {React.Children.only(props.children)}
     </IntlProvider>
   );

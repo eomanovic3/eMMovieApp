@@ -1,10 +1,10 @@
 // import produce from 'immer';
-import searchPageReducer from "../reducer";
-import {fromJS} from "immutable";
+import { fromJS } from 'immutable';
+import searchPageReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe("searchPageReducer", () => {
+describe('searchPageReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
@@ -15,7 +15,7 @@ describe("searchPageReducer", () => {
     });
   });
 
-  it("returns the initial state", () => {
+  it('returns the initial state', () => {
     const expectedResult = state;
     expect(searchPageReducer(undefined, {})).toEqual(expectedResult);
   });

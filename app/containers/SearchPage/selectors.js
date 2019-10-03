@@ -8,32 +8,26 @@ import { initialState } from './reducer';
 const selectSearchPageDomain = state => state.searchPage || initialState;
 
 const makeSelectLoading = () =>
-    createSelector(
-        selectSearchPageDomain,
-        searchPage => searchPage.get('loading'),
-    );
+  createSelector(
+    selectSearchPageDomain,
+    searchPage => searchPage.get('loading'),
+  );
 
 const makeSelectError = () =>
-    createSelector(
-        selectSearchPageDomain,
-        searchPage => searchPage.get('error'),
-    );
+  createSelector(
+    selectSearchPageDomain,
+    searchPage => searchPage.get('error'),
+  );
 
 const makeSelectTerm = () =>
-    createSelector(
-        selectSearchPageDomain,
-        searchPage => searchPage.get('term'),
-    );
+  createSelector(
+    selectSearchPageDomain,
+    searchPage => searchPage.get('term'),
+  );
 
 const makeSelectMovies = () =>
-    createSelector(
-        selectSearchPageDomain,
-        searchPage => searchPage.get('movies'),
-    );
-export {
-  selectSearchPageDomain,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectTerm,
-  makeSelectMovies,
-};
+  createSelector(
+    selectSearchPageDomain,
+    searchPage => searchPage.get('movies'),
+  );
+export { selectSearchPageDomain, makeSelectLoading, makeSelectError, makeSelectTerm, makeSelectMovies };

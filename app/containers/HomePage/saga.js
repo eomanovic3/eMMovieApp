@@ -5,33 +5,19 @@ import { LOAD_MOVIES } from './constants';
 
 export function* getMovies() {
   try {
-    const [
-      popularMovies,
-      popularTvShows,
-      familyShows,
-      documentaryMovies,
-      allMovies,
-    ] = yield all([
-      call(
-        request,
-        'https://api.themoviedb.org/3/movie/popular?api_key=a8ff50b145b3742d52ef2fc9ce52264f',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+    const [popularMovies, popularTvShows, familyShows, documentaryMovies, allMovies] = yield all([
+      call(request, 'https://api.themoviedb.org/3/movie/popular?api_key=a8ff50b145b3742d52ef2fc9ce52264f', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ),
-      call(
-        request,
-        'https://api.themoviedb.org/3/tv/popular?api_key=a8ff50b145b3742d52ef2fc9ce52264f',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      }),
+      call(request, 'https://api.themoviedb.org/3/tv/popular?api_key=a8ff50b145b3742d52ef2fc9ce52264f', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ),
+      }),
       call(
         request,
         'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f&with_genres=10751',
@@ -39,7 +25,7 @@ export function* getMovies() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          }
+          },
         },
       ),
       call(
@@ -49,31 +35,18 @@ export function* getMovies() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          }
-        },
-      ),
-      call(
-        request,
-        'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
           },
         },
       ),
+      call(request, 'https://api.themoviedb.org/3/discover/movie?api_key=a8ff50b145b3742d52ef2fc9ce52264f', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
     ]);
 
-
-    yield put(
-      moviesLoaded(
-        popularMovies,
-        popularTvShows,
-        familyShows,
-        documentaryMovies,
-        allMovies,
-      ),
-    );
+    yield put(moviesLoaded(popularMovies, popularTvShows, familyShows, documentaryMovies, allMovies));
   } catch (err) {
     yield put(moviesLoadingError(err));
   }

@@ -1,6 +1,6 @@
 // import produce from 'immer';
+import { fromJS } from 'immutable';
 import detailPageReducer from '../reducer';
-import {fromJS} from "immutable";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */

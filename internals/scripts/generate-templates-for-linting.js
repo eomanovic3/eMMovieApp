@@ -107,10 +107,7 @@ function runLintingOnDirectory(relativePath) {
       {
         silent: true,
       },
-      code =>
-        code
-          ? reject(new Error(`Linting error(s) in ${relativePath}`))
-          : resolve(relativePath),
+      code => (code ? reject(new Error(`Linting error(s) in ${relativePath}`)) : resolve(relativePath)),
     );
   });
 }
@@ -180,10 +177,7 @@ function removeFile(filePath) {
  * @param {string} [backupFileExtension=BACKUPFILE_EXTENSION]
  * @returns {Promise<*>}
  */
-async function restoreModifiedFile(
-  filePath,
-  backupFileExtension = BACKUPFILE_EXTENSION,
-) {
+async function restoreModifiedFile(filePath, backupFileExtension = BACKUPFILE_EXTENSION) {
   return new Promise((resolve, reject) => {
     const targetFile = filePath.replace(`.${backupFileExtension}`, '');
     try {
@@ -314,11 +308,7 @@ async function generateLanguage(language) {
 
   // Run eslint on modified and added JS files
   const lintingTasks = Object.keys(generatedFiles)
-    .filter(
-      filePath =>
-        generatedFiles[filePath] === 'modify' ||
-        generatedFiles[filePath] === 'add',
-    )
+    .filter(filePath => generatedFiles[filePath] === 'modify' || generatedFiles[filePath] === 'add')
     .filter(filePath => filePath.endsWith('.js'))
     .map(async filePath => {
       const result = await runLintingOnFile(filePath)
@@ -335,14 +325,7 @@ async function generateLanguage(language) {
     .filter(filePath => generatedFiles[filePath] === 'backup')
     .map(async filePath => {
       const result = await restoreModifiedFile(filePath)
-        .then(
-          feedbackToUser(
-            `Restored file: '${filePath.replace(
-              `.${BACKUPFILE_EXTENSION}`,
-              '',
-            )}'`,
-          ),
-        )
+        .then(feedbackToUser(`Restored file: '${filePath.replace(`.${BACKUPFILE_EXTENSION}`, '')}'`))
         .catch(reason => reportErrors(reason));
 
       return result;
@@ -352,11 +335,7 @@ async function generateLanguage(language) {
 
   // Remove backup files and added files
   const removalTasks = Object.keys(generatedFiles)
-    .filter(
-      filePath =>
-        generatedFiles[filePath] === 'backup' ||
-        generatedFiles[filePath] === 'add',
-    )
+    .filter(filePath => generatedFiles[filePath] === 'backup' || generatedFiles[filePath] === 'add')
     .map(async filePath => {
       const result = await removeFile(filePath)
         .then(feedbackToUser(`Removed '${filePath}'`))
@@ -373,7 +352,7 @@ async function generateLanguage(language) {
 /**
  * Run
  */
-(async function () {
+(async function() {
   await generateComponents([
     { kind: 'component', name: 'Component', memo: false },
     { kind: 'component', name: 'MemoizedComponent', memo: true },

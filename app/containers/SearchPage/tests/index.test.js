@@ -6,14 +6,15 @@
  *
  */
 
-import React from "react";
-import { render } from "react-testing-library";
+import React from 'react';
+import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { SearchPage } from "../index";
+// eslint-disable-next-line import/named
+import { SearchPage } from '../index';
 
-describe("<SearchPage />", () => {
-  it("Expect to have additional unit tests specified", () => {
+describe('<SearchPage />', () => {
+  it('Expect to have additional unit tests specified', () => {
     expect(false).toEqual(false);
   });
 
@@ -22,9 +23,9 @@ describe("<SearchPage />", () => {
    *
    * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
    */
-  it.skip("Should render and match the snapshot", () => {
+  it.skip('Should render and match the snapshot', () => {
     const {
-      container: { firstChild }
+      container: { firstChild },
     } = render(<SearchPage />);
     expect(firstChild).toMatchSnapshot();
   });

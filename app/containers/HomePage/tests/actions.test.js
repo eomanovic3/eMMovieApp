@@ -1,5 +1,5 @@
-import { loadMovies} from '../actions';
-import { LOAD_MOVIES} from '../constants';
+import { loadMovies } from '../actions';
+import { LOAD_MOVIES } from '../constants';
 
 describe('HomePage actions', () => {
   describe('Default Action', () => {

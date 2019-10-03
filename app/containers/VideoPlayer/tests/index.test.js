@@ -13,7 +13,6 @@ import { render } from 'react-testing-library';
 import { VideoPlayer } from '../index';
 
 describe('<VideoPlayer />', () => {
-
   it('Expect to have additional unit tests specified', () => {
     expect(false).toEqual(false);
   });

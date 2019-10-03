@@ -1,6 +1,6 @@
 // import produce from 'immer';
+import { fromJS } from 'immutable';
 import homePageReducer from '../reducer';
-import {fromJS} from "immutable";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
@@ -17,7 +17,6 @@ describe('homePageReducer', () => {
       allMovies: null,
       selectedVideo: null,
     });
-
   });
 
   it('returns the initial state', () => {

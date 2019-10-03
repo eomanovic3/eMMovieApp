@@ -17,11 +17,7 @@ class VideoList extends React.PureComponent {
       const renderendList = this.props.videos.results ? (
         this.props.videos.results.map((video, index) => (
           <div key={index.toString()}>
-            <VideoItem
-              key={video.id}
-              video={video}
-              onVideoSelect={this.props.onVideoSelect}
-            />
+            <VideoItem key={video.id} video={video} onVideoSelect={this.props.onVideoSelect} />
           </div>
         ))
       ) : (

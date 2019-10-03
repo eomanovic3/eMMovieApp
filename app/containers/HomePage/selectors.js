@@ -45,9 +45,7 @@ const makeSelectFamilyShows = () =>
 const makeSelectDocumentaryMovies = () =>
   createSelector(
     selectHomePageDomain,
-    homePage => {
-      return homePage.get('documentaryMovies');
-    },
+    homePage => homePage.get('documentaryMovies'),
   );
 
 const makeSelectHomePage = () =>

@@ -8,12 +8,7 @@
  */
 
 import { fromJS } from 'immutable';
-import {
-  CHANGE_TERM,
-  LOAD_MOVIES_ERROR,
-  LOAD_MOVIES_SUCCESS,
-  LOAD_MOVIES,
-} from './constants';
+import { CHANGE_TERM, LOAD_MOVIES_ERROR, LOAD_MOVIES_SUCCESS, LOAD_MOVIES } from './constants';
 
 export const initialState = fromJS({
   loading: false,
@@ -44,9 +39,7 @@ function homePageReducer(state = initialState, action) {
       // eslint-disable-next-line no-case-declarations
       const allMovies = state
         .get('allMovies')
-        .filter(c =>
-          c.original_title.toLowerCase().includes(action.term.toLowerCase()),
-        );
+        .filter(c => c.original_title.toLowerCase().includes(action.term.toLowerCase()));
       return state.set('allMovies', allMovies);
     default:
       return state;

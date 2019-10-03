@@ -1,5 +1,5 @@
-import {createSelector} from 'reselect';
-import {initialState} from './reducer';
+import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
 /**
  * Direct selector to the detailPage state domain
@@ -8,40 +8,40 @@ import {initialState} from './reducer';
 const selectDetailPageDomain = state => state.detailPage || initialState;
 
 const makeSelectLoading = () =>
-    createSelector(
-        selectDetailPageDomain,
-        detailPage => detailPage.get('loading'),
-    );
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('loading'),
+  );
 
 const makeSelectError = () =>
-    createSelector(
-        selectDetailPageDomain,
-        detailPage => detailPage.get('error'),
-    );
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('error'),
+  );
 
 const makeSelectMovie = () =>
-    createSelector(
-        selectDetailPageDomain,
-        detailPage => detailPage.get('movie'),
-    );
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('movie'),
+  );
 
 const makeSelectId = () =>
-    createSelector(
-        selectDetailPageDomain,
-        detailPage => detailPage.get('id'),
-    );
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('id'),
+  );
 
 const makeSelectMovieLink = () =>
-    createSelector(
-        selectDetailPageDomain,
-        detailPage => detailPage.get('movieLink'),
-    );
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('movieLink'),
+  );
 
 export {
-    selectDetailPageDomain,
-    makeSelectLoading,
-    makeSelectError,
-    makeSelectMovie,
-    makeSelectId,
-    makeSelectMovieLink,
+  selectDetailPageDomain,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectMovie,
+  makeSelectId,
+  makeSelectMovieLink,
 };

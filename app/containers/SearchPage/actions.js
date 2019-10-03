@@ -4,9 +4,7 @@
  *
  */
 
-
-
-import {CHANGE_SEARCH_TERM, LOAD_SEARCH_MOVIES, SEARCH_SUCCESS} from "./constants";
+import { CHANGE_SEARCH_TERM, LOAD_SEARCH_MOVIES, SEARCH_SUCCESS } from './constants';
 
 export function changeSearchTerm(term) {
   return {
@@ -21,11 +19,9 @@ export function loadSearchMovies() {
   };
 }
 
-export function searchMoviesLoaded(
-    movies,
-) {
+export function searchMoviesLoaded(movies) {
   return {
     type: SEARCH_SUCCESS,
-    movies
+    movies,
   };
 }

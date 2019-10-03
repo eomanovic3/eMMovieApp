@@ -14,17 +14,16 @@ module.exports = function addProdMiddlewares(app, options) {
   const whitelist = ['http://localhost:3000', 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'];
   const corsOptions = {
     credentials: true, // This is important.
+    // eslint-disable-next-line consistent-return
     origin: (origin, callback) => {
-      if(whitelist.includes(origin))
-        return callback(null, true)
+      if (whitelist.includes(origin)) return callback(null, true);
 
       callback(new Error('Not allowed by CORS'));
-    }
-  }
+    },
+  };
 
-  app.use(cors(corsOptions));  app.use(publicPath, express.static(outputPath));
+  app.use(cors(corsOptions));
+  app.use(publicPath, express.static(outputPath));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(outputPath, 'index.html')),
-  );
+  app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
 };

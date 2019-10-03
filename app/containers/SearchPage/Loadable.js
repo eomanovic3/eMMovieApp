@@ -4,8 +4,6 @@
  *
  */
 
-import loadable from "utils/loadable";
+import loadable from 'utils/loadable';
 
-export default loadable(() => {
-    return import("./index");
-});
+export default loadable(() => import('./index'));

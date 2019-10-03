@@ -1,5 +1,5 @@
-import { LOAD_MOVIE} from '../constants';
-import {loadMovieWithId} from "../actions";
+import { LOAD_MOVIE } from '../constants';
+import { loadMovieWithId } from '../actions';
 
 describe('VideoPlayer actions', () => {
   describe('Load Movie Action', () => {
