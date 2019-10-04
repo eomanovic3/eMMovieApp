@@ -70,7 +70,6 @@ class VideoPlayer extends React.PureComponent {
           'captions',
           'text/vtt',
         );
-        console.log(player.getNumberOfClosedCaptionsInChannel);
         console.log('The video has now been loaded!');
       })
       .catch(this.onError); // onError is executed if the asynchronous load fails.

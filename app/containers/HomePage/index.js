@@ -27,7 +27,9 @@ import {
 } from './selectors';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import VideoItem from '../../components/VideoItem';
+// eslint-disable-next-line import/order
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line import/order
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 const responsive = {
@@ -155,6 +157,7 @@ HomePage.propTypes = {
   popularTvShows: PropTypes.object,
   familyShows: PropTypes.object,
   documentaryMovies: PropTypes.object,
+  onVideoSelect: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {

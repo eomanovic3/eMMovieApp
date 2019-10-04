@@ -1,4 +1,4 @@
-import { takeLatest, call, all, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import { LOAD_SEARCH_MOVIES } from './constants';
 import request from '../../utils/request';

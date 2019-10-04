@@ -19,31 +19,10 @@ import injectSaga from '../../utils/injectSaga';
 import 'react-multi-carousel/lib/styles.css';
 import VideoItem from '../../components/VideoItem';
 import { changeSearchTerm, loadSearchMovies } from './actions';
+// eslint-disable-next-line import/order
 import styled from 'styled-components';
 import VideoList from '../../components/VideoList';
 import { makeSelectMovies, makeSelectTerm } from './selectors';
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 2,
-    partialVisibilityGutter: 40,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 const PaddingDiv = styled.div`
   padding: 0 23px !important;
@@ -111,6 +90,7 @@ SearchPage.propTypes = {
   term: PropTypes.string,
   movies: PropTypes.object,
   onChangeTerm: PropTypes.func,
+  onVideoSelect: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {

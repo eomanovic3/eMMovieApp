@@ -1,11 +1,4 @@
-import {
-  selectGlobal,
-  makeSelectCurrentUser,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
-  makeSelectLocation,
-} from '../selectors';
+import { selectGlobal, makeSelectLoading, makeSelectError } from '../selectors';
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {

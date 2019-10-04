@@ -37,11 +37,8 @@ class VideoItem extends React.PureComponent {
     const { video } = this.props;
     const imageUrl = video && video.poster_path ? `https://image.tmdb.org/t/p/w500${video.poster_path}` : nomovie;
     const noMovieImageAvailable = video && video.poster_path;
-    if (
-      video &&
-      (video.first_air_date || video.release_date) &&
-      (video.original_title || video.original_name || video.name)
-    ) {
+    const date = video ? video.first_air_date || video.release_date : null;
+    if (video && date && (video.original_title || video.original_name || video.name)) {
       return (
         <Link
           to={`/detailPage/${video.first_air_date ? 'tv' : 'movie'}/${video.id}`}
@@ -54,14 +51,12 @@ class VideoItem extends React.PureComponent {
             noMovieImageAvailable={noMovieImageAvailable}
           />
           <TitleDiv>
+            {/* eslint-disable-next-line no-nested-ternary */}
             {video.original_title ? video.original_title : video.original_name ? video.original_name : null}
           </TitleDiv>
           <YearDiv>
-            {video.release_date
-              ? video.release_date.toString().split('-')[0]
-              : video.first_air_date
-              ? video.first_air_date.toString().split('-')[0]
-              : null}
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {date ? date.toString().split('-')[0] : date ? date.toString().split('-')[0] : null}
           </YearDiv>
         </Link>
       );
@@ -72,7 +67,6 @@ class VideoItem extends React.PureComponent {
 
 VideoItem.propTypes = {
   video: PropTypes.object,
-  onVideoSelect: PropTypes.func,
 };
 
 export default VideoItem;

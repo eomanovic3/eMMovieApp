@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
+// eslint-disable-next-line import/named
 import { VideoPlayer } from '../index';
 
 describe('<VideoPlayer />', () => {

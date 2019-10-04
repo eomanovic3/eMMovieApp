@@ -7,6 +7,7 @@ export function* getMovieWithId(data) {
   try {
     let movieOrTVshow = null;
     let movieLink = null;
+
     if (data.movieType === 'tv') {
       movieOrTVshow = yield call(
         request,
