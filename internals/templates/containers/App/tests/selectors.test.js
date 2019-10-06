@@ -1,13 +1,13 @@
-import { makeSelectLocation } from 'containers/App/selectors';
+import { makeSelectLoading } from 'containers/App/selectors';
 
-describe('makeSelectLocation', () => {
-  it('should select the location', () => {
+describe('makeSelectLoading', () => {
+  it('should select the loading', () => {
     const router = {
-      location: { pathname: '/foo' },
+      loading: false,
     };
     const mockedState = {
       router,
     };
-    expect(makeSelectLocation()(mockedState)).toEqual(router.location);
+    expect(makeSelectLoading()(mockedState)).toEqual(router.loading);
   });
 });

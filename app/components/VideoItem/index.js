@@ -25,7 +25,7 @@ const YearDiv = styled.div`
 `;
 
 const MovieImage = styled.img`
-  width: ${props => (!props.noMovieImageAvailable ? '300px !important' : '400px !important')};
+  width: ${props => (!props.noMovieImageAvailableFlag ? '300px !important' : '400px !important')};
   margin: auto;
   display: block;
   float: right;
@@ -35,8 +35,6 @@ const MovieImage = styled.img`
 class VideoItem extends React.PureComponent {
   render() {
     const { video } = this.props;
-    const imageUrl = video && video.poster_path ? `https://image.tmdb.org/t/p/w500${video.poster_path}` : nomovie;
-    const noMovieImageAvailable = video && video.poster_path;
     const date = video ? video.first_air_date || video.release_date : null;
     if (video && date && (video.original_title || video.original_name || video.name)) {
       return (
@@ -47,17 +45,11 @@ class VideoItem extends React.PureComponent {
           <MovieImage
             className="ui image"
             alt={video.original_title}
-            src={imageUrl}
-            noMovieImageAvailable={noMovieImageAvailable}
+            src={video && video.poster_path ? `https://image.tmdb.org/t/p/w500${video.poster_path}` : nomovie}
+            noMovieImageAvailableFlag={video && video.poster_path}
           />
-          <TitleDiv>
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {video.original_title ? video.original_title : video.original_name ? video.original_name : null}
-          </TitleDiv>
-          <YearDiv>
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {date ? date.toString().split('-')[0] : date ? date.toString().split('-')[0] : null}
-          </YearDiv>
+          <TitleDiv>{video ? video.original_title || video.original_name : null}</TitleDiv>
+          <YearDiv>{date ? date.toString().split('-')[0] : null}</YearDiv>
         </Link>
       );
     }

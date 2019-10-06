@@ -12,6 +12,7 @@ export const initialState = fromJS({
   error: false,
   id: null,
   movie: null,
+  movieLink: null,
 });
 
 function videoPlayerReducer(state = initialState, action) {

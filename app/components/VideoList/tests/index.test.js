@@ -8,9 +8,42 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
-// import 'jest-dom/extend-expect'; // add some helpful assertions
-
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import VideoList from '../index';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+let container;
+let props;
+beforeEach(() => {
+  container = document.createElement('div');
+  props = {
+    videos: {
+      results: [
+        {
+          original_title: 'Mad Hot Ballroom',
+          release_date: '2005-05-13',
+          overview: 'Overview',
+          id: 14358,
+          poster_path: '/cVnBICXmyqlusz1iYvjvIOHxo5U.jpg',
+        },
+        {
+          original_title: 'To Wong Foo, Thanks for Everything! Julie Newmar',
+          release_date: '1995-09-07',
+          overview: 'Overview',
+          id: 9090,
+          poster_path: '/xIDEoG9FQGmMCh5XsbkvSuD8WrW.jpg',
+        },
+      ],
+    },
+  };
+  document.body.appendChild(container);
+});
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
 
 describe('<VideoList />', () => {
   it('Expect to not log errors in console', () => {
@@ -19,19 +52,15 @@ describe('<VideoList />', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Expect to have additional unit tests specified', () => {
-    expect(false).toEqual(false);
-  });
-
-  /**
-   * Unskip this test to use it
-   *
-   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
-   */
-  it.skip('Should render and match the snapshot', () => {
+  it('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(<VideoList />);
     expect(firstChild).toMatchSnapshot();
+  });
+
+  it('render with videos', () => {
+    const component = shallow(<VideoList videos={props.videos} />);
+    expect(component).toMatchSnapshot();
   });
 });

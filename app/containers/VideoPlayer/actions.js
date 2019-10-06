@@ -14,6 +14,8 @@ export function loadMovieWithId(id) {
 }
 
 export function movieLoaded(movie, movieLink) {
+  console.log(movie);
+  console.log(movieLink);
   return {
     type: MOVIE_LOADED,
     movie,

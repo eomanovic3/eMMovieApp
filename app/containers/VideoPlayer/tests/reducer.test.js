@@ -12,6 +12,7 @@ describe('videoPlayerReducer', () => {
       error: false,
       id: null,
       movie: null,
+      movieLink: null,
     });
   });
 

@@ -12,6 +12,8 @@ export const initialState = fromJS({
   error: false,
   id: null,
   movie: null,
+  movieLink: null,
+  movieType: null,
 });
 
 function detailPageReducer(state = initialState, action) {
@@ -20,6 +22,7 @@ function detailPageReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
+        .set('movieType', action.movieType)
         .set('id', action.id);
     case LOAD_MOVIE_ERROR:
       return state.set('error', action.error).set('loading', false);

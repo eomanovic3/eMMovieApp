@@ -37,6 +37,12 @@ const makeSelectMovieLink = () =>
     detailPage => detailPage.get('movieLink'),
   );
 
+const makeSelectMovieType = () =>
+  createSelector(
+    selectDetailPageDomain,
+    detailPage => detailPage.get('movieType'),
+  );
+
 export {
   selectDetailPageDomain,
   makeSelectLoading,
@@ -44,4 +50,5 @@ export {
   makeSelectMovie,
   makeSelectId,
   makeSelectMovieLink,
+  makeSelectMovieType,
 };

@@ -86,6 +86,7 @@ class VideoPlayer extends React.PureComponent {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className="p-2">

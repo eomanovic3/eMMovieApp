@@ -17,7 +17,14 @@ import reducer from './reducer';
 import saga from './saga';
 import 'font-awesome/css/font-awesome.min.css';
 
-import { makeSelectError, makeSelectId, makeSelectLoading, makeSelectMovie, makeSelectMovieLink } from './selectors';
+import {
+  makeSelectError,
+  makeSelectId,
+  makeSelectLoading,
+  makeSelectMovie,
+  makeSelectMovieLink,
+  makeSelectMovieType,
+} from './selectors';
 import { loadMovieWithId } from './actions';
 import nomovie from '../../images/nomovie.jpg';
 import yt from '../../images/yt.png';
@@ -26,7 +33,7 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 const MovieImage = styled.img`
   min-width: 150px;
   min-height: 150px;
-  width: ${props => (!props.noMovieImageAvailable ? '300px !important' : '400px !important')};
+  width: ${props => (!props.noMovieImageAvailableFlag ? '300px !important' : '400px !important')};
   margin: auto;
   display: block;
   float: right;
@@ -50,7 +57,7 @@ class DetailPage extends React.PureComponent {
       this.props.movie && this.props.movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${this.props.movie.poster_path}`
         : nomovie;
-    const noMovieImageAvailable = this.props.movie && this.props.movie.poster_path;
+    const noMovieImageAvailableFlag = this.props.movie && this.props.movie.poster_path;
     const movieLinkValue =
       !this.props.movieLink || this.props.movieLink === ''
         ? 'https://www.youtube.com/watch?v=vFPajU-d-Ek'
@@ -119,7 +126,7 @@ class DetailPage extends React.PureComponent {
               <MovieImage
                 className="ui image rounded-5 w-100"
                 src={imageUrl}
-                noMovieImageAvailable={noMovieImageAvailable}
+                noMovieImageAvailableFlag={noMovieImageAvailableFlag}
                 alt={movie && movie.overview ? movie.overview : 'No overview'}
               />
             </div>
@@ -152,6 +159,7 @@ const mapStateToProps = createStructuredSelector({
   movie: makeSelectMovie(),
   id: makeSelectId(),
   movieLink: makeSelectMovieLink(),
+  movieType: makeSelectMovieType(),
 });
 
 const withConnect = connect(

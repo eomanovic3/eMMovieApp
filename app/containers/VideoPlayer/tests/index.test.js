@@ -1,32 +1,40 @@
-/**
- *
- * Tests for VideoPlayer
- *
- * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
- *
- */
-
 import React from 'react';
-import { render } from 'react-testing-library';
-// import 'jest-dom/extend-expect'; // add some helpful assertions
 
-// eslint-disable-next-line import/named
-import { VideoPlayer } from '../index';
+import Adapter from 'enzyme-adapter-react-16/build';
+import Enzyme from 'enzyme';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import App from '../../App';
+import history from '../../../utils/history';
+import configureStore from '../../../configureStore';
+Enzyme.configure({ adapter: new Adapter() });
 
-describe('<VideoPlayer />', () => {
-  it('Expect to have additional unit tests specified', () => {
-    expect(false).toEqual(false);
-  });
-
-  /**
-   * Unskip this test to use it
-   *
-   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
-   */
-  it.skip('Should render and match the snapshot', () => {
-    const {
-      container: { firstChild },
-    } = render(<VideoPlayer />);
-    expect(firstChild).toMatchSnapshot();
+let store;
+let container;
+let initialState;
+beforeEach(() => {
+  container = document.createElement('div');
+  initialState = {};
+  store = configureStore(initialState, history);
+  document.body.appendChild(container);
+});
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
+describe('Container Login', () => {
+  it('render title', () => {
+    act(() => {
+      ReactDOM.render(
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </Provider>,
+        container,
+      );
+    });
   });
 });
