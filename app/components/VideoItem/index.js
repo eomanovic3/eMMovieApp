@@ -36,7 +36,11 @@ class VideoItem extends React.PureComponent {
   render() {
     const { video } = this.props;
     const date = video ? video.first_air_date || video.release_date : null;
-    if (video && date && (video.original_title || video.original_name || video.name)) {
+    if (
+      video &&
+      (video.first_air_date !== undefined || video.release_date !== undefined) &&
+      (video.original_title || video.original_name || video.name)
+    ) {
       return (
         <Link
           to={`/detailPage/${video.first_air_date ? 'tv' : 'movie'}/${video.id}`}
@@ -44,12 +48,19 @@ class VideoItem extends React.PureComponent {
         >
           <MovieImage
             className="ui image"
-            alt={video.original_title}
+            alt={video.overview}
             src={video && video.poster_path ? `https://image.tmdb.org/t/p/w500${video.poster_path}` : nomovie}
             noMovieImageAvailableFlag={video && video.poster_path}
           />
-          <TitleDiv>{video ? video.original_title || video.original_name : null}</TitleDiv>
-          <YearDiv>{date ? date.toString().split('-')[0] : null}</YearDiv>
+          {video.original_title && (!video.original_name || !video.name) ? (
+            <TitleDiv>{video.original_title}</TitleDiv>
+          ) : null}
+          {video.original_name && (!video.original_title || !video.name) ? (
+            <TitleDiv>{video.original_name}</TitleDiv>
+          ) : null}
+          {video.name && (!video.original_name && !video.original_title) ? <TitleDiv>{video.name}</TitleDiv> : null}
+
+          <YearDiv>{date ? date.toString().split('-')[0] : 'No year available'}</YearDiv>
         </Link>
       );
     }
