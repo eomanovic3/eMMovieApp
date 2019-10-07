@@ -1,7 +1,7 @@
 eMMovieApp: movie info tool
 ########################################
 
-eMMovieApp (pronounced *emmovie-app*) is a ReactJS based application.
+eMMovieApp (pronounced *emmovie-app*) is a ReactJS with Redux based application.
 Its goal is to show users available movies and series by using its name, genre, release date etc.
 It provides a simple search option that helps user to search movies.
 
