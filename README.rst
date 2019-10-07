@@ -34,7 +34,7 @@ Prerequisites
 ============
 1. Git
 2. Node: any 8.x version starting with 8.4.0 or greater
-3. A clone of the [eMMovieApp.org repo](https://github.com/eomanovic3/eMMovieApp) repo on your local machine.
+3. A clone of the https://github.com/eomanovic3/eMMovieApp repo on your local machine.
 
 
 Installation
