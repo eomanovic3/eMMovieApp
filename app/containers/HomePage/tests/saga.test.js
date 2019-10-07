@@ -1,15 +1,17 @@
-/**
- * Test sagas
- */
+import { testSaga } from 'redux-saga-test-plan';
+import homePageSaga, { getMovies } from '../saga';
 
-/* eslint-disable redux-saga/yield-effects */
-// import { take, call, put, select } from 'redux-saga/effects';
-// import homePageSaga from '../saga';
-
-// const generator = homePageSaga();
-
-describe('homePageSaga Saga', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(false).toEqual(false);
+describe('movies fetching flow', () => {
+  it('Fetches the movies with error', () => {
+    const generator = getMovies();
+    generator.next();
+    expect(generator.next().value.payload.action.type).toEqual('app/HomePage/LOAD_MOVIES_ERROR');
+  });
+  it('Test getMovies generator', () => {
+    const saga = testSaga(homePageSaga);
+    saga
+      .next()
+      .takeLatest('app/HomePage/LOAD_MOVIES', getMovies)
+      .finish();
   });
 });

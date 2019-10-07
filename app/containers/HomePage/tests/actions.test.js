@@ -1,8 +1,8 @@
 import { changeTerm, loadMovies, moviesLoaded, moviesLoadingError } from '../actions';
 import { LOAD_MOVIES, LOAD_MOVIES_SUCCESS, LOAD_MOVIES_ERROR, CHANGE_TERM } from '../constants';
 describe('HomePage actions', () => {
-  describe('Default Action', () => {
-    it('has a type of LOAD_MOVIES', () => {
+  describe('LOAD_MOVIES', () => {
+    it('should return the correct type', () => {
       const expected = {
         type: LOAD_MOVIES,
       };
@@ -11,7 +11,7 @@ describe('HomePage actions', () => {
   });
 
   describe('LOAD_MOVIES_SUCCESS', () => {
-    it('should return the correct movie LOAD_MOVIES_SUCCESS', () => {
+    it('should return the correct type', () => {
       const movies = {
         popularMovies: [
           {
@@ -81,7 +81,7 @@ describe('HomePage actions', () => {
   });
 
   describe('LOAD_MOVIE_ERROR', () => {
-    it('should return the LOAD_MOVIE_ERROR', () => {
+    it('should return the correct type', () => {
       const error = '9090';
       const expectedResult = {
         type: LOAD_MOVIES_ERROR,
@@ -93,7 +93,7 @@ describe('HomePage actions', () => {
   });
 
   describe('CHANGE_TERM', () => {
-    it('should return the CHANGE_TERM', () => {
+    it('should return the correct type', () => {
       const term = '9090';
       const expectedResult = {
         type: CHANGE_TERM,

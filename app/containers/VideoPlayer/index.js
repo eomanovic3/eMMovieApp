@@ -64,15 +64,11 @@ class VideoPlayer extends React.PureComponent {
         video.textTracks[0].mode = 'showing';
         video.setAttribute('crossorigin', 'anonymous');
         player.selectTextTrack(player.getTextTracks()[0]);
-        player.addTextTrack(
-          'https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_en.vtt',
-          'en',
-          'captions',
-          'text/vtt',
-        );
         console.log('The video has now been loaded!');
       })
-      .catch(this.onError); // onError is executed if the asynchronous load fails.
+      .catch(error => {
+        console.error('Error code', error.code, 'object', error);
+      });
   }
 
   onErrorEvent(event) {
@@ -80,13 +76,7 @@ class VideoPlayer extends React.PureComponent {
     this.onError(event.detail);
   }
 
-  onError(error) {
-    // Log the error.
-    console.error('Error code', error.code, 'object', error);
-  }
-
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="p-2">
@@ -108,7 +98,36 @@ class VideoPlayer extends React.PureComponent {
           track=""
           crossOrigin="anonymous"
           allowcrosssitecredentials="true"
-        />
+        >
+          <track
+            label="English"
+            kind="subtitles"
+            srcLang="eng"
+            src="https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_en.vtt"
+            type="text/vtt"
+          />
+          <track
+            label="French"
+            kind="subtitles"
+            srcLang="fr"
+            src="https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_fr.vtt"
+            type="text/vtt"
+          />
+          <track
+            label="Spanish"
+            kind="subtitles"
+            srcLang="es"
+            src="https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_es.vtt"
+            type="text/vtt"
+          />
+          <track
+            label="German"
+            kind="subtitles"
+            srcLang="de"
+            src="https://bitdash-a.akamaihd.net/content/sintel/hls/subtitles_de.vtt"
+            type="text/vtt"
+          />
+        </video>
       </div>
     );
   }

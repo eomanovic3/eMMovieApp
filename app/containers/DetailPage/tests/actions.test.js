@@ -3,7 +3,7 @@ import { loadMovieWithId, movieLoaded, movieLoadingError } from '../actions';
 
 describe('Detail page actions', () => {
   describe('loadMovieWithId', () => {
-    it('should return the correct movie', () => {
+    it('should return the correct type', () => {
       const id = '9090';
       const expectedResult = {
         type: LOAD_MOVIE,
@@ -15,7 +15,7 @@ describe('Detail page actions', () => {
   });
 
   describe('MOVIE_LOADED', () => {
-    it('should return the correct movie MOVIE_LOADED', () => {
+    it('should return the correct type', () => {
       const movieLink = 'https://www.youtube.com/watch?v=t433PEQGErc\n';
       const movie = {
         id: 475557,
@@ -36,7 +36,7 @@ describe('Detail page actions', () => {
   });
 
   describe('LOAD_MOVIE_ERROR', () => {
-    it('should return the LOAD_MOVIE_ERROR', () => {
+    it('should return the correct type', () => {
       const error = '9090';
       const expectedResult = {
         type: LOAD_MOVIE_ERROR,

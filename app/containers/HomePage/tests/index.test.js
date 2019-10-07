@@ -14,7 +14,7 @@ import { render } from 'react-testing-library';
 import { HomePage } from '../index';
 
 describe('<HomePage />', () => {
-  it('Expect to have additional unit tests specified', () => {
+  it('expect to have additional unit tests specified', () => {
     expect(false).toEqual(false);
   });
 
@@ -23,7 +23,7 @@ describe('<HomePage />', () => {
    *
    * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
    */
-  it.skip('Should render and match the snapshot', () => {
+  it.skip('should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(<HomePage />);

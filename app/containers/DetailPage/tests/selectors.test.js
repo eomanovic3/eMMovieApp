@@ -93,7 +93,7 @@ describe('makeSelectMovieType', () => {
 
 describe('makeSelectId', () => {
   const idSelector = makeSelectId();
-  it('should select the error', () => {
+  it('should select the id', () => {
     const id = null;
     const mockedState = {
       global: {

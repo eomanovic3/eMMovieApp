@@ -38,7 +38,7 @@ afterEach(() => {
 });
 
 describe('<DetailPage />', () => {
-  it('render title', () => {
+  it('should render title', () => {
     act(() => {
       ReactDOM.render(
         <Provider store={store}>

@@ -7,7 +7,7 @@ import App from '../index';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<App />', () => {
-  it('render with videos', () => {
+  it('should render with videos', () => {
     const component = shallow(<App />);
     expect(component).toMatchSnapshot();
   });

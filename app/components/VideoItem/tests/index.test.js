@@ -38,33 +38,33 @@ afterEach(() => {
 });
 
 describe('<VideoItem />', () => {
-  it('Expect to not log errors in console', () => {
+  it('expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(<VideoItem />);
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Should render and match the snapshot', () => {
+  it('should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(<VideoItem />);
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('render title', () => {
+  it('should render title', () => {
     act(() => {
       ReactDOM.render(<div>{props.video.original_title}</div>, container);
     });
   });
 
-  it('render image', () => {
+  it('should render image', () => {
     act(() => {
       const movieImageUrl = `https://image.tmdb.org/t/p/w500${props.video.poster_path}`;
       ReactDOM.render(<img className="ui image" alt={props.video.original_title} src={movieImageUrl} />, container);
     });
   });
 
-  it('render date', () => {
+  it('should render date', () => {
     act(() => {
       const date = props.video ? props.video.first_air_date || props.video.release_date : null;
       const formattedDate = date ? date.toString().split('-')[0] : null;
@@ -72,16 +72,16 @@ describe('<VideoItem />', () => {
     });
   });
 
-  it('check props.video', () => {
+  it('should check props.video', () => {
     expect(container.to).toBe(`/detailPage/movie/${props.video.id}`);
   });
 
-  it('render with props.video', () => {
+  it('should render with props.video', () => {
     const component = shallow(<VideoItem video={props.video} />);
     expect(component).toMatchSnapshot();
   });
 
-  it('render with props.video null', () => {
+  it('should render with props.video null', () => {
     props.video = null;
     const component = shallow(<VideoItem video={props.video} />);
     expect(component).toMatchSnapshot();

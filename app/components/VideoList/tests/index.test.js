@@ -46,20 +46,20 @@ afterEach(() => {
 });
 
 describe('<VideoList />', () => {
-  it('Expect to not log errors in console', () => {
+  it('expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(<VideoList />);
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Should render and match the snapshot', () => {
+  it('should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(<VideoList />);
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('render with videos', () => {
+  it('should render with videos', () => {
     const component = shallow(<VideoList videos={props.videos} />);
     expect(component).toMatchSnapshot();
   });
