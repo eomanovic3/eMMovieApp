@@ -2,12 +2,12 @@ eMMovieApp: movie info tool
 ########################################
 
 eMMovieApp (pronounced *emmovie-app*) is a ReactJS based application.
-Its goal is to show users available movies and series by using its name, genre, release date etc. 
+Its goal is to show users available movies and series by using its name, genre, release date etc.
 It provides a simple search option that helps user to search movies.
 
 .. class:: no-web no-pdf
 
-    .. image:: https://github.com/eomanovic3/eMMovieApp/blob/master/eMMovieApp.gif
+    .. image:: https://github.com/eomanovic3/eMMovieApp/blob/master/eMMovieAppGif.gif
         :alt: eMMovieApp in action
         :width: 100%
         :align: center
@@ -46,13 +46,13 @@ macOS, Linux, Windows
 .. code-block:: bash
 
     $ npm install
-    
+
 
 Testing
 ============
-Jest and Enzyme are used for testing of the application. 
+Jest and Enzyme are used for testing of the application.
 
-**Jest** acts as a test runner, assertion library, and mocking library.   
+**Jest** acts as a test runner, assertion library, and mocking library.
 
 **Enzyme** is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
 
