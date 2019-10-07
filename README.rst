@@ -63,6 +63,12 @@ Running tests:
     $ npm test
 
 
+
+.. image:: https://github.com/eomanovic3/eMMovieApp/blob/master/testCoverage.jpg
+    :alt: HTTPie compared to cURL
+    :width: 100%
+    :align: center
+
 Author
 -------
 
