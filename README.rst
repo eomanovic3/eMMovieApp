@@ -3,7 +3,7 @@ eMMovieApp: movie info tool
 
 eMMovieApp (pronounced *emmovie-app*) is a ReactJS based application.
 Its goal is to show users available movies and series by using its name, genre, release date etc. 
-It provides a simple search opton that helps user to search movies.
+It provides a simple search option that helps user to search movies.
 
 .. class:: no-web no-pdf
 
@@ -36,9 +36,6 @@ Installation
 macOS, Linux, Windows
 ---------------------
 
-
-On macOS, HTTPie can be installed via `Homebrew <https://brew.sh/>`_
-(recommended):
 
 .. code-block:: bash
 
