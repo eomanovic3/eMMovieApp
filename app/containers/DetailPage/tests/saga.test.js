@@ -1,15 +1,19 @@
-/**
- * Test sagas
- */
+import { testSaga } from 'redux-saga-test-plan';
+import detailPageSaga, { getMovieWithId } from '../saga';
 
-/* eslint-disable redux-saga/yield-effects */
-// import { take, call, put, select } from 'redux-saga/effects';
-// import detailPageSaga from '../saga';
+describe('movies fetching flow', () => {
+  it('Fetches the movies with error', () => {
+    const generator = getMovieWithId({ type: 'app/DetailPage/LOAD_MOVIE', id: '1416', movieType: 'tv' });
+    generator.next();
+    generator.next();
+    expect(generator.next().value.payload.action.type).toEqual('app/DetailPage/LOAD_MOVIE_ERROR');
+  });
 
-// const generator = detailPageSaga();
-
-describe('detailPageSaga Saga', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(false).toEqual(false);
+  it('Test getMovieWithId generator', () => {
+    const saga = testSaga(detailPageSaga);
+    saga
+      .next()
+      .takeLatest('app/DetailPage/LOAD_MOVIE', getMovieWithId)
+      .finish(); // don't forget to test that your saga finished when expected
   });
 });

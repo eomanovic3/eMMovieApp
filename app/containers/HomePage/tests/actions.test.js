@@ -1,6 +1,5 @@
-import { loadMovies } from '../actions';
-import { LOAD_MOVIES } from '../constants';
-
+import { changeTerm, loadMovies, moviesLoaded, moviesLoadingError } from '../actions';
+import { LOAD_MOVIES, LOAD_MOVIES_SUCCESS, LOAD_MOVIES_ERROR, CHANGE_TERM } from '../constants';
 describe('HomePage actions', () => {
   describe('Default Action', () => {
     it('has a type of LOAD_MOVIES', () => {
@@ -8,6 +7,100 @@ describe('HomePage actions', () => {
         type: LOAD_MOVIES,
       };
       expect(loadMovies()).toEqual(expected);
+    });
+  });
+
+  describe('LOAD_MOVIES_SUCCESS', () => {
+    it('should return the correct movie LOAD_MOVIES_SUCCESS', () => {
+      const movies = {
+        popularMovies: [
+          {
+            id: 475557,
+            original_title: 'Joker',
+            overview: 'overview',
+            poster_path: '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            release_date: '2019-10-02',
+            vote_average: '8.8',
+          },
+        ],
+        popularTvShows: [
+          {
+            id: 475557,
+            original_title: 'Joker',
+            overview: 'overview',
+            poster_path: '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            release_date: '2019-10-02',
+            vote_average: '8.8',
+          },
+        ],
+        familyShows: [
+          {
+            id: 475557,
+            original_title: 'Joker',
+            overview: 'overview',
+            poster_path: '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            release_date: '2019-10-02',
+            vote_average: '8.8',
+          },
+        ],
+        documentaryMovies: [
+          {
+            id: 475557,
+            original_title: 'Joker',
+            overview: 'overview',
+            poster_path: '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            release_date: '2019-10-02',
+            vote_average: '8.8',
+          },
+        ],
+        allMovies: [
+          {
+            id: 475557,
+            original_title: 'Joker',
+            overview: 'overview',
+            poster_path: '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            release_date: '2019-10-02',
+            vote_average: '8.8',
+          },
+        ],
+      };
+      const { popularMovies, popularTvShows, familyShows, documentaryMovies, allMovies } = movies;
+      const expectedResult = {
+        type: LOAD_MOVIES_SUCCESS,
+        popularMovies,
+        popularTvShows,
+        familyShows,
+        documentaryMovies,
+        allMovies,
+      };
+
+      expect(moviesLoaded(popularMovies, popularTvShows, familyShows, documentaryMovies, allMovies)).toEqual(
+        expectedResult,
+      );
+    });
+  });
+
+  describe('LOAD_MOVIE_ERROR', () => {
+    it('should return the LOAD_MOVIE_ERROR', () => {
+      const error = '9090';
+      const expectedResult = {
+        type: LOAD_MOVIES_ERROR,
+        error,
+      };
+
+      expect(moviesLoadingError(error)).toEqual(expectedResult);
+    });
+  });
+
+  describe('CHANGE_TERM', () => {
+    it('should return the CHANGE_TERM', () => {
+      const term = '9090';
+      const expectedResult = {
+        type: CHANGE_TERM,
+        term,
+      };
+
+      expect(changeTerm(term)).toEqual(expectedResult);
     });
   });
 });
