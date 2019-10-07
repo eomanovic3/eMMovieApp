@@ -29,10 +29,16 @@ Main features
 * Documentation
 * Test coverage
 
+
+Prerequisites
+============
+1. Git
+2. Node: any 8.x version starting with 8.4.0 or greater
+3. A clone of the [eMMovieApp.org repo](https://github.com/eomanovic3/eMMovieApp) repo on your local machine.
+
+
 Installation
 ============
-
-
 macOS, Linux, Windows
 ---------------------
 
@@ -41,10 +47,20 @@ macOS, Linux, Windows
 
     $ npm install
     
-Usage
-=====
 
+Testing
+============
+Jest and Enzyme are used for testing of the application. 
 
+**Jest** acts as a test runner, assertion library, and mocking library.   
+
+**Enzyme** is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
+
+Running tests:
+
+.. code-block:: bash
+
+    $ npm test
 
 
 Author
