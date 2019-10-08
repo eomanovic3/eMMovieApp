@@ -75,7 +75,7 @@ Running tests:
     :align: center
 
 Author
--------
+============
 
 `Emina Omanovic`
 
