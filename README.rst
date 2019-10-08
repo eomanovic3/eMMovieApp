@@ -39,13 +39,18 @@ Prerequisites
 
 Installation
 ============
-macOS, Linux, Windows
----------------------
-
 
 .. code-block:: bash
 
     $ npm install
+
+
+Running
+============
+
+.. code-block:: bash
+
+    $ npm start
 
 
 Testing
